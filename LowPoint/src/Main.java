@@ -6,17 +6,12 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class Main {
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) {		
 		int [][] map = convertStringToMap();
 		findLowPoints(map);
 	}
-
-
 	
-	
-	public static int calcBasin(int x, int y, boolean [][] visited,int[][] map ) {
-		
+	public static int calcBasin(int x, int y, boolean [][] visited,int[][] map ) {		
 		visited[x][y]=true;
 		int counter = 1;
 		if(map[x][y]==9) {
@@ -28,8 +23,7 @@ public class Main {
 				if(map[x][y]<map[x-1][y]) {
 					counter +=calcBasin(x-1,y,visited,map);
 				}
-			}
-			
+			}			
 		}
 		//east
 		if(x<map.length-1) {
@@ -37,8 +31,7 @@ public class Main {
 				if(map[x][y]<map[x+1][y]) {
 					counter+=calcBasin(x+1,y,visited,map);
 				}
-			}
-		
+			}		
 		}
 		//north
 		if(y>0) {
@@ -55,14 +48,10 @@ public class Main {
 				if(map[x][y]<map[x][y+1]) {
 					counter+=calcBasin(x,y+1,visited,map);
 				}
-			}
-			
-		}
-		
-
+			}			
+		}		
 		return counter;
 	}
-	
 	
 	public static void findLowPoints(int[][] map) {
 		boolean [][] visited = new boolean[map.length][map[0].length];
@@ -96,12 +85,10 @@ public class Main {
 		}
 		Collections.sort(basins, Collections.reverseOrder());
 		System.out.println("Basin multiple: " + basins.get(0)*basins.get(1)*basins.get(2));
-		System.out.println("Risk " + sum);		
-			
+		System.out.println("Risk " + sum);					
 	}
 	
 	public static int[][] convertStringToMap() {
-
 		//load the file
 		File file = new File("data.txt");
 		Scanner sc = null;
